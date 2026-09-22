@@ -1,26 +1,92 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0b0e;
+  --surface: #14161c;
+  --surface-alt: #111319;
+  --border: #242830;
+  --foreground: #eef0f4;
+  --muted: #848c99;
+  --accent: #6f9bc4;
+  --accent-soft: rgba(111, 155, 196, 0.16);
+  --ok: #7fbf8f;
+  --ok-soft: rgba(127, 191, 143, 0.12);
+  --warn: #d9b871;
+  --warn-soft: rgba(217, 184, 113, 0.12);
 }
 
 @theme inline {
   --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-border: var(--border);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-ok: var(--ok);
+  --color-warn: var(--warn);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center gap-2 h-[46px] px-6 rounded-full text-[14px] font-medium bg-accent text-background transition-all active:scale-[0.97] hover:brightness-110;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 h-[46px] px-6 rounded-full text-[14px] font-medium border border-border text-foreground transition-all active:scale-[0.97] hover:border-accent;
+  }
+  .tag {
+    @apply inline-flex items-center h-6 px-2.5 rounded-full text-[11px] font-semibold;
+    background: var(--accent-soft);
+    color: var(--accent);
+  }
+  .tag-muted {
+    @apply inline-flex items-center h-6 px-2.5 rounded-full text-[11px] font-semibold bg-surface-alt text-muted;
+  }
+  .pill-warn {
+    @apply inline-flex items-center h-[34px] px-4 rounded-full text-[12.5px] text-foreground transition-colors;
+    border: 1px solid rgba(217, 184, 113, 0.5);
+    background: var(--warn-soft);
+  }
+  .pill-warn:hover {
+    border-color: var(--warn);
+  }
+  .pill-ok {
+    @apply inline-flex items-center h-[34px] px-4 rounded-full text-[12.5px] text-foreground transition-colors;
+    border: 1px solid rgba(127, 191, 143, 0.5);
+    background: var(--ok-soft);
+  }
+  .pill-ok:hover {
+    border-color: var(--ok);
+  }
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+.caret {
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes pulse-dot {
+  0% { box-shadow: 0 0 0 0 var(--accent-soft); }
+  70% { box-shadow: 0 0 0 10px rgba(111, 155, 196, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(111, 155, 196, 0); }
+}
+.pulse-dot {
+  animation: pulse-dot 2.2s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .caret,
+  .pulse-dot {
+    animation: none !important;
+  }
 }

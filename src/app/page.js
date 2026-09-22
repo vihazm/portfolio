@@ -1,69 +1,81 @@
-import Image from "next/image";
+import Link from "next/link";
+import AnimatedHeadline from "@/components/AnimatedHeadline";
+import HeroPortrait from "@/components/HeroPortrait";
+import Reveal from "@/components/Reveal";
+import ProjectCard from "@/components/ProjectCard";
+import { profile } from "@/data/profile";
+import { projects, homeFeaturedSlugs } from "@/data/projects";
+
+const featured = homeFeaturedSlugs.map((slug) => projects.find((p) => p.slug === slug));
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.js
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <>
+      <section className="mx-auto max-w-[1120px] px-6 sm:px-16 pt-20 sm:pt-24 pb-20 sm:pb-24 grid md:grid-cols-[1.1fr_0.9fr] gap-12 items-center">
+        <div>
+          <Reveal delay={0.05}>
+            <div className="flex items-center gap-2.5 text-[12px] text-foreground/80 mb-5">
+              <span className="w-[22px] h-px bg-border" />
+              who i am
+            </div>
+          </Reveal>
+          <AnimatedHeadline
+            lines={["Software that feels", "obvious to use."]}
+            accentWord="obvious"
+            className="text-[36px] sm:text-[46px] leading-[1.28] font-semibold max-w-[600px]"
+          />
+          <Reveal delay={0.78}>
+            <p className="text-[15.5px] leading-relaxed text-muted max-w-[460px] mt-5">
+              {profile.positioning}
+            </p>
+          </Reveal>
+          <Reveal delay={0.88}>
+            <div className="flex gap-3.5 mt-8">
+              <Link href="/projects" className="btn-primary">
+                View projects
+              </Link>
+              <Link href="/about" className="btn-ghost">
+                About me
+              </Link>
+            </div>
+          </Reveal>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="flex justify-center">
+          <Reveal delay={0.15} y={0}>
+            <HeroPortrait src="/resources/profile-cutout.webp" alt={profile.displayName} />
+          </Reveal>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <div className="border-t border-border" />
+
+      <section className="mx-auto max-w-[1120px] px-6 sm:px-16 py-20 sm:py-24">
+        <Reveal>
+          <h2 className="text-[22px] sm:text-[26px] font-semibold leading-snug max-w-[640px]">
+            From coursework to shipped product. I build things that hold up,
+            stay <span className="text-accent">simple</span> to use, and are
+            built around real people, not just requirements.
+          </h2>
+        </Reveal>
+      </section>
+
+      <div className="border-t border-border" />
+
+      <section className="mx-auto max-w-[1120px] px-6 sm:px-16 pt-16 sm:pt-20 pb-14">
+        <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-0 mb-11">
+          <h2 className="text-[20px] sm:text-[22px] font-semibold">$ ls ./selected-work</h2>
+          <Link href="/projects" className="text-[12.5px] text-muted hover:text-accent transition-colors">
+            all projects
+          </Link>
+        </div>
+        <div className="grid sm:grid-cols-3 gap-6">
+          {featured.map((p, i) => (
+            <Reveal key={p.slug} delay={i * 0.1}>
+              <ProjectCard project={p} index={i} />
+            </Reveal>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }
