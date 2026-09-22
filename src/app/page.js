@@ -3,6 +3,8 @@ import AnimatedHeadline from "@/components/AnimatedHeadline";
 import HeroPortrait from "@/components/HeroPortrait";
 import Reveal from "@/components/Reveal";
 import ProjectCard from "@/components/ProjectCard";
+import ShimmerParagraph from "@/components/ShimmerParagraph";
+import TerminalGraphic from "@/components/TerminalGraphic";
 import { profile } from "@/data/profile";
 import { projects, homeFeaturedSlugs } from "@/data/projects";
 
@@ -20,7 +22,7 @@ export default function Home() {
             </div>
           </Reveal>
           <AnimatedHeadline
-            lines={["Software that feels", "obvious to use."]}
+            lines={["Building software that feels", "obvious to use."]}
             accentWord="obvious"
             className="text-[36px] sm:text-[46px] leading-[1.28] font-semibold max-w-[600px]"
           />
@@ -42,28 +44,40 @@ export default function Home() {
         </div>
         <div className="flex justify-center">
           <Reveal delay={0.15} y={0}>
-            <HeroPortrait src="/resources/profile-cutout.webp" alt={profile.displayName} />
+            <HeroPortrait
+              src="/resources/profile-home-v2.webp"
+              alt={profile.displayName}
+              containerClassName="w-[260px] aspect-[1004/1566] sm:w-[290px]"
+              verticalMaskImage="linear-gradient(to bottom, transparent 0%, black 10%, black 60%, transparent 100%)"
+            />
           </Reveal>
         </div>
       </section>
 
       <div className="border-t border-border" />
 
-      <section className="mx-auto max-w-[1120px] px-6 sm:px-16 py-20 sm:py-24">
-        <Reveal>
-          <h2 className="text-[22px] sm:text-[26px] font-semibold leading-snug max-w-[640px]">
-            From coursework to shipped product. I build things that hold up,
-            stay <span className="text-accent">simple</span> to use, and are
-            built around real people, not just requirements.
-          </h2>
-        </Reveal>
+      <section className="bg-accent overflow-hidden">
+        <div className="mx-auto max-w-[1120px] px-6 sm:px-16 py-20 sm:py-28 grid md:grid-cols-[1.15fr_0.85fr] gap-12 md:gap-16 items-center">
+          <Reveal>
+            <ShimmerParagraph
+              text="From coursework to shipped product. I build things that hold up, stay simple to use, and are built around real people, not just requirements."
+              accentWord="simple"
+              className="text-[22px] sm:text-[27px] font-semibold leading-snug max-w-[640px]"
+            />
+          </Reveal>
+          <div className="flex justify-center md:justify-end">
+            <Reveal delay={0.15} y={0}>
+              <TerminalGraphic />
+            </Reveal>
+          </div>
+        </div>
       </section>
 
       <div className="border-t border-border" />
 
       <section className="mx-auto max-w-[1120px] px-6 sm:px-16 pt-16 sm:pt-20 pb-14">
         <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-0 mb-11">
-          <h2 className="text-[20px] sm:text-[22px] font-semibold">$ ls ./selected-work</h2>
+          <h2 className="text-[20px] sm:text-[22px] font-semibold">My work</h2>
           <Link href="/projects" className="text-[12.5px] text-muted hover:text-accent transition-colors">
             all projects
           </Link>

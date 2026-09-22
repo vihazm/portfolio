@@ -3,6 +3,7 @@ export const profile = {
   positioning:
     "I build intuitive software experiences that connect thoughtful engineering with how people actually use technology.",
   email: "vihassanchith5@gmail.com",
+  phone: "+94770755660",
   linkedin: "https://www.linkedin.com/in/vihas-manimeldura-600222362",
   resumeUrl: "#",
 

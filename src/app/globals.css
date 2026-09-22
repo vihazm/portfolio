@@ -28,18 +28,26 @@
   --font-mono: var(--font-jetbrains-mono);
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-mono), ui-monospace, monospace;
+  overflow-x: hidden;
 }
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-center gap-2 h-[46px] px-6 rounded-full text-[14px] font-medium bg-accent text-background transition-all active:scale-[0.97] hover:brightness-110;
+    @apply inline-flex items-center gap-2 h-[46px] px-6 rounded-full text-[14px] font-medium bg-accent text-background transition-all active:scale-[0.97] hover:brightness-110 whitespace-nowrap shrink-0;
   }
   .btn-ghost {
-    @apply inline-flex items-center gap-2 h-[46px] px-6 rounded-full text-[14px] font-medium border border-border text-foreground transition-all active:scale-[0.97] hover:border-accent;
+    @apply inline-flex items-center gap-2 h-[46px] px-6 rounded-full text-[14px] font-medium border border-border text-foreground transition-all active:scale-[0.97] hover:border-accent whitespace-nowrap shrink-0;
+  }
+  .btn-contact {
+    @apply inline-flex items-center gap-2 h-[46px] px-6 rounded-full text-[14px] font-medium bg-accent text-white transition-all active:scale-[0.97] hover:bg-white hover:text-black whitespace-nowrap shrink-0;
   }
   .tag {
     @apply inline-flex items-center h-6 px-2.5 rounded-full text-[11px] font-semibold;
@@ -84,9 +92,112 @@ body {
   animation: pulse-dot 2.2s ease-out infinite;
 }
 
+.radar-dot::before,
+.radar-dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: var(--accent);
+  opacity: 0.7;
+  box-shadow: 0 0 10px 1px rgba(111, 155, 196, 0.55);
+  animation: radar-ping 2.6s cubic-bezier(0.25, 0.7, 0.35, 1) infinite;
+  pointer-events: none;
+}
+.radar-dot::after {
+  animation-delay: 1.3s;
+}
+@keyframes radar-ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.65;
+  }
+  70% {
+    opacity: 0;
+  }
+  100% {
+    transform: scale(3.6);
+    opacity: 0;
+  }
+}
+
+.shimmer-sweep {
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(
+    100deg,
+    transparent 28%,
+    rgba(255, 255, 255, 1) 47%,
+    rgba(255, 255, 255, 1) 53%,
+    transparent 72%
+  );
+  background-size: 260% 100%;
+  background-position: -140% 0;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmer-sweep-move 5s ease-in-out infinite;
+}
+
+@keyframes shimmer-sweep-move {
+  0% { background-position: -140% 0; }
+  40% { background-position: 140% 0; }
+  100% { background-position: 140% 0; }
+}
+
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.glow-border {
+  position: relative;
+  isolation: isolate;
+}
+.glow-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 3px;
+  background: conic-gradient(
+    from var(--border-angle),
+    transparent 0deg,
+    transparent 260deg,
+    rgba(255, 255, 255, 0.75) 300deg,
+    #ffffff 325deg,
+    rgba(255, 255, 255, 0.75) 350deg,
+    transparent 360deg
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.7));
+  animation: border-spin 4.5s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes border-spin {
+  to {
+    --border-angle: 360deg;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .caret,
   .pulse-dot {
     animation: none !important;
+  }
+  .shimmer-sweep {
+    display: none;
+  }
+  .glow-border::before {
+    animation: none;
+  }
+  .radar-dot::before,
+  .radar-dot::after {
+    animation: none;
+    opacity: 0;
   }
 }

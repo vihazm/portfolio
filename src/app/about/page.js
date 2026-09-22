@@ -1,3 +1,4 @@
+import { Users, Feather, Hammer } from "lucide-react";
 import HeroPortrait from "@/components/HeroPortrait";
 import Reveal from "@/components/Reveal";
 import { profile } from "@/data/profile";
@@ -5,6 +6,8 @@ import { profile } from "@/data/profile";
 export const metadata = {
   title: "About — Vihas Sanchith",
 };
+
+const principleIcons = [Users, Feather, Hammer];
 
 const timeline = [
   {
@@ -37,7 +40,7 @@ export default function About() {
           <Reveal>
             <div className="flex items-center gap-2.5 text-[12px] text-foreground/80 mb-5">
               <span className="w-[22px] h-px bg-border" />
-              about
+              about me
             </div>
           </Reveal>
           <Reveal delay={0.08}>
@@ -47,7 +50,11 @@ export default function About() {
           </Reveal>
           <Reveal delay={0.16}>
             <div className="mt-10">
-              <HeroPortrait src="/resources/profile-cutout.webp" alt={profile.displayName} />
+              <HeroPortrait
+                src="/resources/profile-about-v2.webp"
+                alt={profile.displayName}
+                containerClassName="w-[260px] aspect-[1004/1566] sm:w-[290px]"
+              />
             </div>
           </Reveal>
         </div>
@@ -74,19 +81,31 @@ export default function About() {
 
       <div className="mx-6 sm:mx-16 border-t border-border" />
 
-      <section className="mx-auto max-w-[1120px] px-6 sm:px-16 py-16">
-        <Reveal>
-          <h2 className="text-[22px] sm:text-[24px] font-semibold mb-9">How I work</h2>
-        </Reveal>
-        <div className="grid sm:grid-cols-3 gap-6">
-          {profile.principles.map((pr, i) => (
-            <Reveal key={pr} delay={i * 0.08}>
-              <div>
-                <div className="text-accent text-xs font-semibold">{String(i + 1).padStart(2, "0")}</div>
-                <p className="text-[16px] font-medium mt-2.5">{pr}</p>
-              </div>
-            </Reveal>
-          ))}
+      <section className="bg-accent overflow-hidden">
+        <div className="mx-auto max-w-[1120px] px-6 sm:px-16 py-16 sm:py-20">
+          <Reveal>
+            <h2 className="text-[22px] sm:text-[24px] font-semibold text-black mb-9">How I work</h2>
+          </Reveal>
+          <div className="grid sm:grid-cols-3 gap-5">
+            {profile.principles.map((pr, i) => {
+              const Icon = principleIcons[i];
+              return (
+                <Reveal key={pr} delay={i * 0.08}>
+                  <div className="glow-border group h-full rounded-2xl border border-black/10 bg-black/5 p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-black/10 hover:border-black/20">
+                    <div className="flex items-center justify-between mb-6">
+                      <span className="flex items-center justify-center w-12 h-12 rounded-full bg-black/10 text-black transition-colors group-hover:bg-white group-hover:text-accent">
+                        {Icon && <Icon size={22} strokeWidth={1.75} />}
+                      </span>
+                      <span className="text-white/80 text-[15px] font-semibold tracking-wide">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                    <p className="text-[16px] font-medium text-black leading-snug">{pr}</p>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
         </div>
       </section>
 
@@ -101,13 +120,15 @@ export default function About() {
           {timeline.map((row, i) => (
             <Reveal key={row.year} delay={i * 0.1}>
               <div className={`relative ${i === timeline.length - 1 ? "pb-0" : "pb-10"}`}>
-                <div
-                  className={`absolute -left-8 top-1 w-[11px] h-[11px] rounded-full ${
-                    row.now ? "bg-accent pulse-dot" : "bg-border"
-                  }`}
-                />
-                <div className={`text-2xl font-bold leading-tight ${row.now ? "text-foreground" : "text-muted"}`}>
-                  {row.year}
+                <div className="relative">
+                  <div
+                    className={`absolute -left-8 top-1/2 -translate-y-1/2 w-[11px] h-[11px] rounded-full ${
+                      row.now ? "bg-accent radar-dot" : "bg-border"
+                    }`}
+                  />
+                  <div className={`text-2xl font-bold leading-tight ${row.now ? "text-foreground" : "text-muted"}`}>
+                    {row.year}
+                  </div>
                 </div>
                 <div className="text-[13.5px] text-muted mt-1 leading-relaxed">{row.label}</div>
               </div>

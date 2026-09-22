@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
-import { profile } from "@/data/profile";
+import ContactMenu from "./ContactMenu";
 
 const links = [
   { href: "/", label: "home" },
@@ -30,8 +30,8 @@ export default function Nav() {
               <Link
                 key={l.href}
                 href={l.href}
-                className={`group relative pb-1 text-[13px] transition-colors ${
-                  active ? "text-accent" : "text-muted hover:text-foreground"
+                className={`group relative pb-1 text-[15px] transition-colors ${
+                  active ? "text-accent" : "text-white hover:text-foreground"
                 }`}
               >
                 {l.label}
@@ -43,9 +43,7 @@ export default function Nav() {
               </Link>
             );
           })}
-          <a href={`mailto:${profile.email}`} className="btn-ghost">
-            get_in_touch()
-          </a>
+          <ContactMenu />
         </div>
 
         <button
@@ -73,9 +71,7 @@ export default function Nav() {
               {l.label}
             </Link>
           ))}
-          <a href={`mailto:${profile.email}`} className="btn-ghost w-fit">
-            get_in_touch()
-          </a>
+          <ContactMenu className="w-fit" align="left" />
         </div>
       )}
     </nav>
