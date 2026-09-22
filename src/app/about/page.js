@@ -49,7 +49,7 @@ export default function About() {
             </h1>
           </Reveal>
           <Reveal delay={0.16}>
-            <div className="mt-10">
+            <div className="mt-10 flex justify-center">
               <HeroPortrait
                 src="/resources/profile-about-v2.webp"
                 alt={profile.displayName}
