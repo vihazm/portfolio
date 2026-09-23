@@ -21,9 +21,11 @@ export const profile = {
 
   currentlyExploring: [
     "Modern frontend",
-    "Mobile development",
-    "UX / Product",
-    "Japanese",
+    "Mobile App Development",
+    "UX & User Oriented Development",
+    "Japanese [N3]",
+    "Software Process Improvement",
+    "Quality Assurance",
   ],
 
   education: {

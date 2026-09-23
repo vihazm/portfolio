@@ -28,7 +28,7 @@ export default function Projects() {
         </Reveal>
         <Reveal delay={0.14}>
           <p className="text-[14px] text-muted max-w-[460px] mt-3.5 leading-relaxed">
-            A working selection of what I&apos;ve built, with the reasoning behind the decisions, not just the tech list.
+            A selection of what I&apos;ve built over the span of 2+ years, with behind-the-scene details, not just the list of tech.
           </p>
         </Reveal>
       </header>
