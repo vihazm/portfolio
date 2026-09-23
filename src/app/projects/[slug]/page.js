@@ -77,14 +77,16 @@ export default async function ProjectDetail({ params }) {
 
       <Reveal delay={0.18}>
         <div className="flex gap-4 flex-wrap mb-12">
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="btn-primary"
-          >
-            Live demo <ArrowUpRight size={14} strokeWidth={1.5} />
-          </a>
+          {project.liveUrl && (
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="btn-primary"
+            >
+              Live demo <ArrowUpRight size={14} strokeWidth={1.5} />
+            </a>
+          )}
           <a
             href={project.githubUrl}
             target="_blank"
