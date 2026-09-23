@@ -35,14 +35,40 @@ export default function ProjectGallery({ images }) {
             type="button"
             onClick={nextPage}
             aria-label="Show next screenshots"
-            className="inline-flex items-center justify-center w-9 h-9 rounded-full border border-border text-foreground transition-all hover:border-accent active:scale-[0.94]"
+            className="hidden sm:inline-flex items-center justify-center w-9 h-9 rounded-full border border-border text-foreground transition-all hover:border-accent active:scale-[0.94]"
           >
             <ArrowRight size={16} strokeWidth={1.5} />
           </button>
         )}
       </div>
 
-      <div className="relative overflow-hidden">
+      {/* Mobile: one continuous swipeable strip of every image, no pagination */}
+      <div
+        className="flex sm:hidden overflow-x-auto snap-x snap-mandatory gap-4 scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        style={{ WebkitOverflowScrolling: "touch" }}
+      >
+        {images.map((img, i) => (
+          <motion.button
+            type="button"
+            key={img.src}
+            onClick={() => setLightboxIndex(i)}
+            whileTap={reduce ? {} : { scale: 0.98 }}
+            transition={{ duration: 0.25, ease: [0.2, 0.8, 0.2, 1] }}
+            className="group relative aspect-[16/10] w-[78%] shrink-0 snap-center rounded-xl overflow-hidden border border-border text-left"
+          >
+            <Image
+              src={img.src}
+              alt={img.alt}
+              fill
+              sizes="100vw"
+              className="object-cover"
+            />
+          </motion.button>
+        ))}
+      </div>
+
+      {/* Desktop: 3-per-page grid, paginated with the arrow above */}
+      <div className="hidden sm:block relative overflow-hidden">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={page}
@@ -50,7 +76,7 @@ export default function ProjectGallery({ images }) {
             animate={{ opacity: 1, x: 0 }}
             exit={reduce ? {} : { opacity: 0, x: -24 }}
             transition={{ duration: 0.45, ease: [0.2, 0.8, 0.2, 1] }}
-            className="flex overflow-x-auto snap-x snap-mandatory gap-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:grid sm:grid-cols-3 sm:gap-6 sm:overflow-visible"
+            className="grid grid-cols-3 gap-6"
           >
             {current.map((img, i) => {
               const globalIndex = start + i;
@@ -62,13 +88,13 @@ export default function ProjectGallery({ images }) {
                   whileHover={reduce ? {} : { scale: 1.03 }}
                   whileTap={reduce ? {} : { scale: 0.98 }}
                   transition={{ duration: 0.25, ease: [0.2, 0.8, 0.2, 1] }}
-                  className="group relative aspect-[16/10] w-[78%] shrink-0 snap-center rounded-xl overflow-hidden border border-border text-left sm:w-auto sm:shrink"
+                  className="group relative aspect-[16/10] rounded-xl overflow-hidden border border-border text-left"
                 >
                   <Image
                     src={img.src}
                     alt={img.alt}
                     fill
-                    sizes="(max-width: 640px) 100vw, 280px"
+                    sizes="280px"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-background/0 transition-colors group-hover:bg-background/10" />
