@@ -25,6 +25,10 @@ export const projects = [
       { src: "/resources/homehero/landing-hero.webp", alt: "HomeHero landing page hero section" },
       { src: "/resources/homehero/services.webp", alt: "HomeHero services grid" },
       { src: "/resources/homehero/login.webp", alt: "HomeHero member login screen" },
+      { src: "/resources/homehero/admin-user-management.webp", alt: "HomeHero admin user management screen" },
+      { src: "/resources/homehero/admin-sp-tracking.webp", alt: "HomeHero admin service-provider tracking and MVP providers screen" },
+      { src: "/resources/homehero/admin-dashboard.webp", alt: "HomeHero system admin dashboard" },
+      { src: "/resources/homehero/verification-applications.webp", alt: "HomeHero verification admin applications screen" },
     ],
   },
   {

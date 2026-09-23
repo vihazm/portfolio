@@ -50,7 +50,7 @@ export default function ProjectGallery({ images }) {
             animate={{ opacity: 1, x: 0 }}
             exit={reduce ? {} : { opacity: 0, x: -24 }}
             transition={{ duration: 0.45, ease: [0.2, 0.8, 0.2, 1] }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6"
+            className="flex overflow-x-auto snap-x snap-mandatory gap-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:grid sm:grid-cols-3 sm:gap-6 sm:overflow-visible"
           >
             {current.map((img, i) => {
               const globalIndex = start + i;
@@ -62,7 +62,7 @@ export default function ProjectGallery({ images }) {
                   whileHover={reduce ? {} : { scale: 1.03 }}
                   whileTap={reduce ? {} : { scale: 0.98 }}
                   transition={{ duration: 0.25, ease: [0.2, 0.8, 0.2, 1] }}
-                  className="group relative aspect-[16/10] rounded-xl overflow-hidden border border-border text-left"
+                  className="group relative aspect-[16/10] w-[78%] shrink-0 snap-center rounded-xl overflow-hidden border border-border text-left sm:w-auto sm:shrink"
                 >
                   <Image
                     src={img.src}
