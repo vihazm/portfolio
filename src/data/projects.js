@@ -63,9 +63,31 @@ export const projects = [
   {
     slug: "northstar-rentals",
     title: "Northstar Rentals",
-    placeholder: true,
-    summary: "Case study coming soon.",
-    tags: [],
+    summary:
+      "A desktop system for an exotic/luxury car rental business to manage its fleet, reservations, customers, and staff access from one place.",
+    tags: ["C#", "WinForms", "PostgreSQL", "Npgsql"],
+    status: "2025/2026 · Solo project · Completed",
+    githubUrl: "https://github.com/vihazm/NorthstarCollection_portal.git",
+    problem:
+      "NorthstarCollection Portal was built to give a small exotic/luxury car rental business a single desktop system for running day-to-day operations — tracking the fleet, taking reservations, managing customers, and giving staff role-appropriate access — instead of juggling spreadsheets or ad hoc records for cars, bookings, and staff logins.",
+    role:
+      "Solo project. I designed and built the full system — the WinForms UI, the PostgreSQL schema, and the data layer connecting them — covering login/roles, the three dashboards, fleet management, reservations, customer history, and user administration.",
+    decisions: [
+      "C# WinForms + PostgreSQL — chose a native Windows desktop stack with Npgsql for the database layer, styled with Guna.UI2 and MaterialSkin rather than building a web frontend, since the target users are internal staff on fixed workstations.",
+      "Role-based dashboards — Admin, Manager, and Sales each get their own dashboard wired to only the features relevant to that role, rather than one dashboard with permission checks scattered through it.",
+      "Status-driven fleet state — a car's availability is derived from its reservation history and a manual status field together, so \"Available\" / \"Rented\" / \"Unavailable\" stays consistent without a separate scheduling system.",
+    ],
+    challenges:
+      "The database was originally wired up with a hardcoded connection string and plain-text password storage — fine for getting the app working end-to-end quickly, but not something that should sit in source control or in the database long-term. Going back to fix those after the fact (hashing passwords with a migration path for already-seeded accounts, moving config to an ignored file) was straightforward, but it would have been cleaner to decide on those patterns before writing the first login query. With more experience now, I'd set up config/secrets handling and a basic security posture (hashing, parameterized queries throughout) from the very first commit instead of retrofitting them later.",
+    outcome:
+      "A working C# WinForms desktop application backed by PostgreSQL. It supports three staff roles with different permissions, handles the full reservation lifecycle (booking → VAT-inclusive pricing → marking a car as rented), tracks per-customer spend and loyalty tier, and exports login audit logs. Since the initial build, I've gone back in and hardened it — passwords are now hashed instead of stored in plain text, double-bookings on the same car are blocked, and the database connection string was moved out of source into a local config file so the project could be pushed to GitHub safely.",
+    images: [
+      { src: "/resources/northstar-rentals/login.webp", alt: "Northstar Collection Portal login screen" },
+      { src: "/resources/northstar-rentals/admin-dashboard.webp", alt: "Northstar Collection Portal admin dashboard" },
+      { src: "/resources/northstar-rentals/view-fleet.webp", alt: "Northstar Collection Portal fleet view with car details" },
+      { src: "/resources/northstar-rentals/view-statistics.webp", alt: "Northstar Collection Portal monthly statistics screen" },
+      { src: "/resources/northstar-rentals/user-management.webp", alt: "Northstar Collection Portal user management screen" },
+    ],
   },
   {
     slug: "project-4",
