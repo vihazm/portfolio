@@ -133,13 +133,6 @@ export const projects = [
       { src: "/resources/goldspice/user-management.webp", alt: "GoldSpice user management screen" },
     ],
   },
-  {
-    slug: "project-4",
-    title: "Project 4",
-    placeholder: true,
-    summary: "A new project slot, coming soon.",
-    tags: [],
-  },
 ];
 
 export const homeFeaturedSlugs = ["homehero", "news-app", "northstar-rentals"];

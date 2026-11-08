@@ -36,7 +36,9 @@ export default function Projects() {
         </Reveal>
       </header>
 
-      <section className="mx-auto max-w-[1120px] px-6 sm:px-16 pb-10 space-y-6">
+      <section
+        className={`mx-auto max-w-[1120px] px-6 sm:px-16 space-y-6 ${rest.length ? "pb-10" : "pb-20"}`}
+      >
         {featured.map((p, i) => (
           <Reveal key={p.slug} delay={i * 0.08}>
             <div className="rounded-xl border border-border bg-surface p-8 sm:p-10 grid md:grid-cols-[1.4fr_1fr] gap-10 transition-colors hover:border-accent">
@@ -72,15 +74,17 @@ export default function Projects() {
         ))}
       </section>
 
-      <section className="mx-auto max-w-[1120px] px-6 sm:px-16 pb-20">
-        <div className="grid sm:grid-cols-3 gap-6">
-          {rest.map((p, i) => (
-            <Reveal key={p.slug} delay={i * 0.1}>
-              <ProjectCard project={p} index={i + featured.length} />
-            </Reveal>
-          ))}
-        </div>
-      </section>
+      {rest.length > 0 && (
+        <section className="mx-auto max-w-[1120px] px-6 sm:px-16 pb-20">
+          <div className="grid sm:grid-cols-3 gap-6">
+            {rest.map((p, i) => (
+              <Reveal key={p.slug} delay={i * 0.1}>
+                <ProjectCard project={p} index={i + featured.length} />
+              </Reveal>
+            ))}
+          </div>
+        </section>
+      )}
       </div>
     </div>
   );
