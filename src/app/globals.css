@@ -312,46 +312,6 @@ body {
   .dm-pulse { animation: none; }
 }
 
-/* Halo background (project detail pages) */
-.hl-region {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  -webkit-mask-image: radial-gradient(ellipse 760px 470px at 50% 230px, #000 18%, transparent 100%);
-  mask-image: radial-gradient(ellipse 760px 470px at 50% 230px, #000 18%, transparent 100%);
-}
-.hl-dots {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, rgba(132, 140, 153, 0.32) 1.2px, transparent 1.6px);
-  background-size: 28px 28px;
-}
-.hl-lit {
-  position: absolute;
-  inset: 0;
-  background-image: radial-gradient(circle, rgba(150, 190, 228, 1) 1.7px, transparent 2.2px);
-  background-size: 28px 28px;
-  --hl-band: linear-gradient(115deg, transparent 0%, transparent 42%, rgba(0, 0, 0, 0.35) 47%, #000 50%, rgba(0, 0, 0, 0.35) 53%, transparent 58%, transparent 100%);
-  -webkit-mask-image: var(--hl-band);
-  mask-image: var(--hl-band);
-  -webkit-mask-size: 300% 100%;
-  mask-size: 300% 100%;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  animation: dm-scan 11s ease-in-out infinite;
-}
-.hl-halo {
-  position: absolute;
-  right: 8%;
-  top: 60px;
-  width: 620px;
-  height: 620px;
-  pointer-events: none;
-}
-@media (prefers-reduced-motion: reduce) {
-  .hl-lit { animation: none; opacity: 0; }
-}
-
 /* Radar sweep background (project detail pages) */
 @property --rd-a {
   syntax: "<angle>";
