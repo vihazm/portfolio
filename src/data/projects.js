@@ -90,6 +90,37 @@ export const projects = [
     ],
   },
   {
+    slug: "goldspice",
+    title: "GoldSpice",
+    summary:
+      "A desktop point-of-sale and store management app for a Ceylon spice business, with separate logins for admins, managers and cashiers.",
+    tags: ["NetBeans", "Java", "MySQL"],
+    status: "2025 · Solo project · Completed",
+    githubUrl: "https://github.com/vihazm/goldspice-pos",
+    problem:
+      "Small spice shops often track stock, prices and sales by hand, which leads to mistakes and no clear view of how the business is doing. GoldSpice is a desktop point-of-sale and store management app for a conceptual Ceylon spice business with the same name. It has separate logins for admins, managers and cashiers, so each person only sees the tools they need.",
+    role:
+      "Solo build in NetBeans with Java. I designed and implemented the Swing desktop interface in NetBeans, the controller layer, and the MySQL database it runs on, including the schema, seed data and the branding across every screen.",
+    decisions: [
+      "MVC structure. The screens (View) never touch the database directly. A Controller layer handles all SQL, so the database logic stays in one place.",
+      "Role-based dashboards. After login, the user's role decides which dashboard opens, so cashiers can't reach pricing or user management.",
+      "Bills saved as one transaction. A bill and its line items are written together and rolled back if anything fails, so there are no half-saved sales.",
+      "Shared logo helper. One small class draws the logo on every screen, so it looks the same everywhere and is easy to change.",
+    ],
+    challenges:
+      "The hardest part was rebuilding the database from scratch with no original schema after XAMPP MySQL server crashed unexpectedly and took out the entire database before I had taken any backups. Next time I'd definitely use reliable tools, move the database settings into a config file, hash passwords, and design a more intuitive UI.",
+    outcome:
+      "A working local desktop app backed by a MySQL database. Admins manage users and products, managers update prices and view sales (with a filter by quarter), and cashiers create customer bills. Saving a bill records it and each of its line items. I tested the main flows (logins, product and user changes, pricing, billing and sales) by running them against the real app. It is not packaged for others yet: the database password is hardcoded, user passwords are stored as plain text since this was a very beginner-level project for the 2nd Semester at LNBTI.",
+    images: [
+      { src: "/resources/goldspice/login.webp", alt: "GoldSpice login screen" },
+      { src: "/resources/goldspice/admin-dashboard.webp", alt: "GoldSpice admin dashboard" },
+      { src: "/resources/goldspice/manager-dashboard.webp", alt: "GoldSpice manager dashboard" },
+      { src: "/resources/goldspice/product-management.webp", alt: "GoldSpice product management screen" },
+      { src: "/resources/goldspice/pricing-management.webp", alt: "GoldSpice pricing management screen" },
+      { src: "/resources/goldspice/user-management.webp", alt: "GoldSpice user management screen" },
+    ],
+  },
+  {
     slug: "project-4",
     title: "Project 4",
     placeholder: true,

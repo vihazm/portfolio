@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import ProjectGallery from "@/components/ProjectGallery";
 import Reveal from "@/components/Reveal";
+import RadarBackground from "@/components/RadarBackground";
 import { projects } from "@/data/projects";
 
 export function generateStaticParams() {
@@ -38,7 +39,9 @@ export default async function ProjectDetail({ params }) {
 
   if (project.placeholder) {
     return (
-      <section className="mx-auto max-w-[760px] px-6 sm:px-16 pt-24 sm:pt-28 pb-28 text-center">
+      <div className="relative overflow-hidden">
+      <RadarBackground />
+      <section className="relative z-10 mx-auto max-w-[760px] px-6 sm:px-16 pt-24 sm:pt-28 pb-28 text-center">
         <Reveal>{BackLink}</Reveal>
         <Reveal delay={0.08}>
           <span className="tag-muted mb-5">in_progress</span>
@@ -50,11 +53,14 @@ export default async function ProjectDetail({ params }) {
           <p className="text-[15px] text-muted leading-relaxed">{project.summary}</p>
         </Reveal>
       </section>
+      </div>
     );
   }
 
   return (
-    <article className="mx-auto max-w-[820px] px-6 sm:px-16 pt-24 sm:pt-28 pb-28">
+    <div className="relative overflow-hidden">
+    <RadarBackground />
+    <article className="relative z-10 mx-auto max-w-[820px] px-6 sm:px-16 pt-24 sm:pt-28 pb-28">
       <Reveal>{BackLink}</Reveal>
 
       <Reveal delay={0.06}>
@@ -144,5 +150,6 @@ export default async function ProjectDetail({ params }) {
         </section>
       </Reveal>
     </article>
+    </div>
   );
 }

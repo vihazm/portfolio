@@ -1,13 +1,14 @@
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import ProjectCard from "@/components/ProjectCard";
+import DotMatrixBackground from "@/components/DotMatrixBackground";
 import { projects } from "@/data/projects";
 
 export const metadata = {
   title: "Projects — Vihas Sanchith",
 };
 
-const featuredSlugs = ["homehero", "news-app", "northstar-rentals"];
+const featuredSlugs = ["homehero", "news-app", "northstar-rentals", "goldspice"];
 const featured = featuredSlugs
   .map((slug) => projects.find((p) => p.slug === slug))
   .filter(Boolean);
@@ -15,7 +16,9 @@ const rest = projects.filter((p) => !featuredSlugs.includes(p.slug));
 
 export default function Projects() {
   return (
-    <>
+    <div className="relative overflow-hidden">
+      <DotMatrixBackground />
+      <div className="relative z-10">
       <header className="mx-auto max-w-[1120px] px-6 sm:px-16 pt-20 sm:pt-24 pb-14">
         <Reveal>
           <div className="flex items-center gap-2.5 text-[12px] text-foreground/80 mb-4">
@@ -78,6 +81,7 @@ export default function Projects() {
           ))}
         </div>
       </section>
-    </>
+      </div>
+    </div>
   );
 }
