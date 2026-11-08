@@ -1,5 +1,18 @@
 export const projects = [
   {
+    slug: "sprpta-complaints",
+    title: "SPRPTA Public Complaint and Suggestion Management System",
+    inProgress: true,
+    summary:
+      "One place for the Southern Provincial Road Passenger Transport Authority to receive, track and resolve public complaints and suggestions about bus and trishaw services.",
+    tags: ["Next.js", "Python/FastAPI", "PostgreSQL", "pgvector"],
+    status: "2026/2027 · Group project (real client) · In progress",
+    problem:
+      "Complaints about bus and trishaw services in Galle, Matara and Hambantota reach our client, the Southern Provincial Road Passenger Transport Authority (SPRPTA) in Sri Lanka by email, letter, WhatsApp and SMS. They are handled by hand, with no consistent tracking, deadlines or record of what was decided. This system gives the authority one place to manage the whole process.",
+    role:
+      "Developed by a team of 6 students. I am tasked with building the Admin module and the common login and landing page. I also run the team's GitHub workflow, reviewing, testing and merging everyone's work.",
+  },
+  {
     slug: "homehero",
     title: "HomeHero",
     summary:

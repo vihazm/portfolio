@@ -409,3 +409,38 @@ body {
   .rd-lit,
   .rd-wedge { display: none; }
 }
+
+/* Under construction block (in-progress project pages) */
+.uc-tape {
+  height: 12px;
+  background-image: repeating-linear-gradient(-45deg, var(--warn) 0 14px, var(--background) 14px 28px);
+  background-size: 79.2px 12px;
+  opacity: 0.85;
+  animation: uc-tape 3s linear infinite;
+}
+.uc-tape-reverse {
+  animation-direction: reverse;
+}
+@keyframes uc-tape {
+  from { background-position: 0 0; }
+  to { background-position: 79.2px 0; }
+}
+.uc-swing {
+  transform-origin: 318px 44px;
+  animation: uc-swing 4.5s ease-in-out infinite alternate;
+}
+@keyframes uc-swing {
+  from { transform: rotate(-2.5deg); }
+  to { transform: rotate(2.5deg); }
+}
+.uc-dash {
+  animation: uc-dash 1.2s linear infinite;
+}
+@keyframes uc-dash {
+  to { stroke-dashoffset: -18; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .uc-tape,
+  .uc-swing,
+  .uc-dash { animation: none; }
+}

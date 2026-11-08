@@ -4,6 +4,7 @@ import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import ProjectGallery from "@/components/ProjectGallery";
 import Reveal from "@/components/Reveal";
 import RadarBackground from "@/components/RadarBackground";
+import UnderConstruction, { ConstructionNotice } from "@/components/UnderConstruction";
 import { projects } from "@/data/projects";
 
 export function generateStaticParams() {
@@ -82,6 +83,11 @@ export default async function ProjectDetail({ params }) {
       </Reveal>
 
       <Reveal delay={0.18}>
+        {project.inProgress ? (
+          <div className="mb-12">
+            <ConstructionNotice />
+          </div>
+        ) : (
         <div className="flex gap-4 flex-wrap mb-12">
           {project.liveUrl && (
             <a
@@ -102,6 +108,7 @@ export default async function ProjectDetail({ params }) {
             GitHub repo <ArrowUpRight size={14} strokeWidth={1.5} />
           </a>
         </div>
+        )}
       </Reveal>
 
       {project.images && project.images.length > 0 && (
@@ -110,7 +117,7 @@ export default async function ProjectDetail({ params }) {
         </Reveal>
       )}
 
-      {detailSections.map((sec, i) => (
+      {detailSections.filter((sec) => project[sec.key]).map((sec, i) => (
         <Reveal key={sec.key} delay={i * 0.05}>
           <section className="py-8 border-t border-border">
             <h2 className="text-[13px] uppercase tracking-wider text-accent font-semibold mb-3">
@@ -123,6 +130,13 @@ export default async function ProjectDetail({ params }) {
         </Reveal>
       ))}
 
+      {project.inProgress && (
+        <Reveal delay={0.1}>
+          <UnderConstruction />
+        </Reveal>
+      )}
+
+      {project.decisions && (
       <Reveal delay={0.15}>
         <section className="py-8 border-t border-border">
           <h2 className="text-[13px] uppercase tracking-wider text-accent font-semibold mb-4">
@@ -140,7 +154,9 @@ export default async function ProjectDetail({ params }) {
           </ul>
         </section>
       </Reveal>
+      )}
 
+      {project.challenges && (
       <Reveal delay={0.2}>
         <section className="py-8 border-t border-border">
           <h2 className="text-[13px] uppercase tracking-wider text-accent font-semibold mb-3">
@@ -149,6 +165,7 @@ export default async function ProjectDetail({ params }) {
           <p className="text-[15px] leading-relaxed text-muted max-w-[65ch]">{project.challenges}</p>
         </section>
       </Reveal>
+      )}
     </article>
     </div>
   );

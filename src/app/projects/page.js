@@ -8,7 +8,7 @@ export const metadata = {
   title: "Projects — Vihas Sanchith",
 };
 
-const featuredSlugs = ["homehero", "news-app", "northstar-rentals", "goldspice"];
+const featuredSlugs = ["sprpta-complaints", "homehero", "news-app", "northstar-rentals", "goldspice"];
 const featured = featuredSlugs
   .map((slug) => projects.find((p) => p.slug === slug))
   .filter(Boolean);
